@@ -27,5 +27,12 @@ print("Nulls in Country", df.filter(df.Country.isNull()).count())
 # Create a new dataframe with non-null values
 df_clean = df.filter(df.CustomerID.isNotNull())
 
-# Check that CustomerID column doesn't contain null values
+df_clean.printSchema()
+
+# Check that the CustomerID's column doesn't contain null values
 print("Nulls in CustomerID", df_clean.filter(df_clean.CustomerID.isNull()).count())
+
+# Count the number of total gross revenue from sales
+total_revenue = df_clean.select(F.sum(df_clean.Quantity * df_clean.UnitPrice.cast("float"))).collect()[0][0]
+print("Total sale revenues : ", total_revenue, "$")
+

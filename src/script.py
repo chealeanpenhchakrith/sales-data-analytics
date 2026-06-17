@@ -19,8 +19,13 @@ print("Nulls in InvoiceNo", df.filter(df.InvoiceNo.isNull()).count())
 print("Nulls in StockCode", df.filter(df.StockCode.isNull()).count())
 print("Nulls in Description", df.filter(df.Description.isNull()).count())
 print("Nulls in Quantity", df.filter(df.Quantity.isNull()).count())
-print("Nulls in InvoiceNo", df.filter(df.InvoiceDate.isNull()).count())
+print("Nulls in InvoiceDate", df.filter(df.InvoiceDate.isNull()).count())
 print("Nulls in UnitPrice", df.filter(df.UnitPrice.isNull()).count())
 print("Nulls in CustomerID", df.filter(df.CustomerID.isNull()).count())
 print("Nulls in Country", df.filter(df.Country.isNull()).count())
 
+# Create a new dataframe with non-null values
+df_clean = df.filter(df.CustomerID.isNotNull())
+
+# Check that CustomerID column doesn't contain null values
+print("Nulls in CustomerID", df_clean.filter(df_clean.CustomerID.isNull()).count())

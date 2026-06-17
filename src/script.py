@@ -24,6 +24,9 @@ print("Nulls in UnitPrice", df.filter(df.UnitPrice.isNull()).count())
 print("Nulls in CustomerID", df.filter(df.CustomerID.isNull()).count())
 print("Nulls in Country", df.filter(df.Country.isNull()).count())
 
+# Count negative values in Quantity's column
+print("Negative values in Quantity", df.filter(df.Quantity < 0).count())
+
 # Create a new dataframe with non-null values
 df_clean = df.filter(df.CustomerID.isNotNull())
 
@@ -36,3 +39,5 @@ print("Nulls in CustomerID", df_clean.filter(df_clean.CustomerID.isNull()).count
 total_revenue = df_clean.select(F.sum(df_clean.Quantity * df_clean.UnitPrice.cast("float"))).collect()[0][0]
 print("Total sale revenues : ", total_revenue, "$")
 
+total_number_product_sold = df_clean.filter(df_clean.Quantity > 0).select(F.sum(df_clean.Quantity)).collect()[0][0]
+print("The total number of product sold is", total_number_product_sold)

@@ -2,7 +2,17 @@ services:
   spark-master:
     image: apache/spark:3.5.0
     container_name: sales-spark-master
-    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master", "--host", "0.0.0.0", "--port", "7077", "--webui-port", "8080"]
+    command:
+      [
+        "/opt/spark/bin/spark-class",
+        "org.apache.spark.deploy.master.Master",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "7077",
+        "--webui-port",
+        "8080",
+      ]
     ports:
       - "7077:7077"
       - "8080:8080"
@@ -10,14 +20,71 @@ services:
       - ./:/app
     working_dir: /app
 
-  spark-worker:
+  spark-worker-1:
     image: apache/spark:3.5.0
-    container_name: sales-spark-worker
+    container_name: sales-spark-worker-1
     depends_on:
       - spark-master
-    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077", "--cores", "2", "--memory", "2G", "--webui-port", "8081"]
+    command:
+      [
+        "/opt/spark/bin/spark-class",
+        "org.apache.spark.deploy.worker.Worker",
+        "spark://spark-master:7077",
+        "--cores",
+        "2",
+        "--memory",
+        "2G",
+        "--webui-port",
+        "8081",
+      ]
     ports:
       - "8081:8081"
+    volumes:
+      - ./:/app
+    working_dir: /app
+
+  spark-worker-2:
+    image: apache/spark:3.5.0
+    container_name: sales-spark-worker-2
+    depends_on:
+      - spark-master
+    command:
+      [
+        "/opt/spark/bin/spark-class",
+        "org.apache.spark.deploy.worker.Worker",
+        "spark://spark-master:7077",
+        "--cores",
+        "2",
+        "--memory",
+        "2G",
+        "--webui-port",
+        "8082",
+      ]
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./:/app
+    working_dir: /app
+
+  spark-worker-3:
+    image: apache/spark:3.5.0
+    container_name: sales-spark-worker-3
+    depends_on:
+      - spark-master
+    command:
+      [
+        "/opt/spark/bin/spark-class",
+        "org.apache.spark.deploy.worker.Worker",
+        "spark://spark-master:7077",
+        "--cores",
+        "2",
+        "--memory",
+        "2G",
+        "--webui-port",
+        "8083",
+      ]
+    ports:
+      - "8083:8083"
     volumes:
       - ./:/app
     working_dir: /app

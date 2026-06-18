@@ -1,5 +1,34 @@
 # Sales-Data-Analytics
 
+## Demo Menu
+
+The project includes a terminal demo menu aligned with the two required parts of the assignment:
+
+- Apache Spark Analytics
+- Hadoop HDFS Integration
+
+The demo uses a two-phase workflow:
+
+1. Run the full Spark analysis once from HDFS and export all result tables to `output/`.
+2. Browse the exported CSV/JSON results through the menu without recomputing each analysis.
+
+Run the menu from the project root:
+
+```bash
+python3 scripts/demo_menu.py
+```
+
+Recommended live demo flow:
+
+```text
+1. Run Full Analysis
+2. Apache Spark Analytics -> browse KPI, sales, product, customer, and country results
+3. Hadoop HDFS Integration -> show HDFS services, upload, and dataset path
+4. View Exported Files
+```
+
+The menu structure is documented in `docs/demo-menu-structure.md`.
+
 ## Step 1: Docker Runtime
 
 This project includes a Docker Compose runtime for Spark, PySpark, and HDFS.

@@ -2,12 +2,15 @@ import csv
 import json
 import os
 import sys
+from functools import partial
 from pathlib import Path
 
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 
+
+print = partial(print, flush=True)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT_PATH = str(PROJECT_ROOT / "src" / "data" / "Online Retail.csv")

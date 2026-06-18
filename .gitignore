@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+output/
+
+# Local Spark / Hadoop runtime artifacts
+spark-warehouse/
+metastore_db/
+derby.log
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
